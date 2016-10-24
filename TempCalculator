@@ -1,0 +1,25 @@
+<?php
+
+            $tempC = 32;
+            function runConversion () { 
+            global $tempC;
+            $tempF = $tempC * 1.8 + 32;
+            echo $tempF . "F ";
+            echo $tempC . " C";
+            
+    }
+            
+        
+
+runConversion(); 
+?>
+
+<form action="SourceCode.php" method="post">
+    <input type="text" name="Celsius">
+    <input type="submit" name="convert" value="Calculate">
+</form>
+<?php
+    if(isset($_POST['convert'])) {
+        $tempC = $_POST['Celsius'];
+        runConversion();
+    }
