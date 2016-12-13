@@ -1,13 +1,4 @@
-<!DOCTYPE php>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-
-<!-- The below styling is just for dev purposes. For best results, only copy
-the classes and ids to your site's style sheet. General styles, like h2 and p,
-for example, should not be added. -->
+<!DOCTYPE html>
 
 <style>
 h2 {
@@ -44,48 +35,48 @@ p{
 </style>
 <?php
 // initializing of all variables
-$annlAvgFranchisees = 12;
-$addlNewFranchisees = 6;
-$totNewFranchisees = $annlAvgFranchisees + $addlNewFranchisees;
-$growthRate = ($totNewFranchisees - $annlAvgFranchisees) / $annlAvgFranchisees;
+$annlAvgClientes = 12;
+$addlNewClientes = 6;
+$totNewClientes = $annlAvgClientes + $addlNewClientes;
+$growthRate = ($totNewClientes - $annlAvgClientes) / $annlAvgClientes;
 $adjustedGrowthRate = $growthRate * 100;
 $avgMonthRev = 50000;
 $monthlyRoyalty = 0.10;
 $adjustedMonthlyRoyalty = $monthlyRoyalty / 100;
-$franchiseFee= 35000;
-$franchPipeSolutions = $totNewFranchisees * ($avgMonthRev * $monthlyRoyalty) + $totNewFranchisees * $franchiseFee;
-$busAsUsual = ($annlAvgFranchisees * $avgMonthRev * $monthlyRoyalty) + $annlAvgFranchisees * $franchiseFee;
-$addlRevenue = $franchPipeSolutions - $busAsUsual;
+$clientFee= 35000;
+$fPS = $totNewClientes * ($avgMonthRev * $monthlyRoyalty) + $totNewClientes * $clientFee;
+$busAsUsual = ($annlAvgClientes * $avgMonthRev * $monthlyRoyalty) + $annlAvgClientes * $clientFee;
+$addlRevenue = $fPS - $busAsUsual;
 $agreementTerms = 10;
 $revThruTerm = $addlRevenue * $agreementTerms;
 
 function calcGrowthAccelerate () {
-    global $annlAvgFranchisees;
-    global $addlNewFranchisees;
-    global $totNewFranchisees;
+    global $annlAvgClientes;
+    global $addlNewClientes;
+    global $totNewClientes;
     global $growthRate;
     global $adjustedGrowthRate;
     global $adjustedMonthlyRoyalty;
     global $monthlyRoyalty;
-    $totNewFranchisees = $annlAvgFranchisees + $addlNewFranchisees;
-    $growthRate = ($totNewFranchisees - $annlAvgFranchisees) / $annlAvgFranchisees;
+    $totNewClientes = $annlAvgClientes + $addlNewClientes;
+    $growthRate = ($totNewClientes - $annlAvgClientes) / $annlAvgClientes;
     $adjustedGrowthRate = $growthRate * 100;
     $adjustedMonthlyRoyalty = $monthlyRoyalty / 100;
 }
 function calcGrowthRevIncrease () {
-    global $annlAvgFranchisees;
-    global $totNewFranchisees;
+    global $annlAvgClientes;
+    global $totNewClientes;
     global $avgMonthRev;
     global $monthlyRoyalty;
-    global $franchiseFee;
-    global $franchPipeSolutions;
+    global $clientFee;
+    global $fPS;
     global $busAsUsual;
     global $addlRevenue;
     global $agreementTerms;
     global $revThruTerm;
-    $franchPipeSolutions = $totNewFranchisees * ($avgMonthRev * $monthlyRoyalty) + $totNewFranchisees * $franchiseFee;
-    $busAsUsual = ($annlAvgFranchisees * $avgMonthRev * $monthlyRoyalty) + $annlAvgFranchisees * $franchiseFee;
-    $addlRevenue = $franchPipeSolutions - $busAsUsual;
+    $fPS = $totNewClientes * ($avgMonthRev * $monthlyRoyalty) + $totNewClientes * $clientFee;
+    $busAsUsual = ($annlAvgClientes * $avgMonthRev * $monthlyRoyalty) + $annlAvgClientes * $clientFee;
+    $addlRevenue = $fPS - $busAsUsual;
     $revThruTerm = $addlRevenue * $agreementTerms;
 
 }
@@ -93,7 +84,7 @@ function calcGrowthRevIncrease () {
 
 <div style="text-align: center;">
 <div style="text-align:center; border: 1px solid black; display:inline-block;">
-<h2>Franchise Pipeline Solutions Growth Calculator </h2>
+<h2>Client Growth Calculator </h2>
 <p>(12 month period)</p>
 
 <form action="index.php" method="post">
@@ -106,16 +97,16 @@ function calcGrowthRevIncrease () {
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td class="left-cell">Average # franchisees signed annually</td>
-        <td class="right-cell"><input type="text" name="Annl-avg-franchisees" placeholder="<?php echo $annlAvgFranchisees; ?>"><?php if(isset($_POST['calculate'])) {
-        $annlAvgFranchisees = $_POST['Annl-avg-franchisees'];
+        <td class="left-cell">Average # clients signed annually</td>
+        <td class="right-cell"><input type="text" name="Annl-avg-clients" placeholder="<?php echo $annlAvgClientes; ?>"><?php if(isset($_POST['calculate'])) {
+        $annlAvgClients = $_POST['Annl-avg-clients'];
     } ?>
 </form></td>
     </tr>
     <tr>
-        <td class="left-cell">Additional new franchisees desired</td>
-        <td class="right-cell"><input type="text" name="Addl-new-franchisees"><?php if(isset($_POST['calculate'])) {
-        $addlNewFranchisees = $_POST['Addl-new-franchisees'];
+        <td class="left-cell">Additional new clients desired</td>
+        <td class="right-cell"><input type="text" name="Addl-new-clients"><?php if(isset($_POST['calculate'])) {
+        $addlNewClientes = $_POST['Addl-new-clients'];
     } ?></td>
     </tr>
     <tr>
@@ -139,9 +130,9 @@ function calcGrowthRevIncrease () {
     } ?></td>
     </tr>
     <tr>
-        <td class="left-cell">Your franchise fee</td>
-        <td class="right-cell"><input type="text" name="Franchise-fee"><?php if(isset($_POST['calculate'])) {
-        $franchiseFee = $_POST['Franchise-fee'];
+        <td class="left-cell">Your client fee</td>
+        <td class="right-cell"><input type="text" name="Client-fee"><?php if(isset($_POST['calculate'])) {
+        $clientFee = $_POST['Client-fee'];
     } ?></td>
     </tr>
     <tr>
@@ -149,10 +140,10 @@ function calcGrowthRevIncrease () {
         <td>&nbsp;</td>
     </tr>
     <tr>
-        <td class="left-cell">Total new franchisees at accelerated growth rate</td>
+        <td class="left-cell">Total new clients at accelerated growth rate</td>
         <td class="right-cell"><?php if(isset($_POST['calculate'])) {
         calcGrowthAccelerate();
-        echo $totNewFranchisees;
+        echo $totNewClientes;
     } ?></td>
     </tr>
     <tr>
@@ -167,8 +158,8 @@ function calcGrowthRevIncrease () {
         <td>&nbsp;</td>
     </tr>
     <tr class="calc-cell-emph">
-        <td class="left-cell">Franchise Pipeline Solutions</td>
-        <td class="right-cell"><?php echo $franchPipeSolutions; ?></td>
+        <td class="left-cell">Client Solution</td>
+        <td class="right-cell"><?php echo $fPS; ?></td>
     </tr>
     <tr>
         <td class="left-cell">Business as Usual</td>
@@ -207,9 +198,11 @@ function calcGrowthRevIncrease () {
 &nbsp;
 <p>The text below is only used to confirm values are being updated by the php script.</p>
 <?php
-echo '<b>' . $annlAvgFranchisees . '</b> Average Franchisees signed annually<br>';
-echo '<b>' . $addlNewFranchisees . '</b> Additional New Franchisees<br>';
-echo '<b>' . $totNewFranchisees . '</b> Total New Franchisees';
+echo '<b>' . $annlAvgClientes . '</b> Average Clientes signed annually<br>';
+echo '<b>' . $addlNewClientes . '</b> Additional New Clientes<br>';
+echo '<b>' . $totNewClientes . '</b> Total New Clientes';
 ?>
 </div>
+</div>
+
 </div>
