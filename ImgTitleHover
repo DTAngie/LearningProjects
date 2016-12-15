@@ -1,0 +1,4 @@
+jQuery(window).load(function(){
+   jQuery('a').removeAttr('title');
+   jQuery('img').removeAttr('title');
+});
