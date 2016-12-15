@@ -1,3 +1,4 @@
+//Removes the image title on hover in WordPress
 jQuery(window).load(function(){
    jQuery('a').removeAttr('title');
    jQuery('img').removeAttr('title');
